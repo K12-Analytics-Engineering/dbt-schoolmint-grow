@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "kae-kippchicago-dbt"
+version = "0.1.0"
+description = "Kipp Chicago Schools"
+authors = ["Marcos Alcozer <marcos@alcozer.dev>", "Zander Stachniak <zander@alcozer.dev>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+dbt-bigquery = "^1.5.1"
+
+[tool.poetry.group.dev.dependencies]
+sqlfluff = "=2.1.1"
+sqlfluff-templater-dbt = "=2.1.1"
+black = "^23.3.0"
+ruff = "^0.0.269"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+exclude = [
+    ".git",
+    ".git-rewrite",
+    ".ruff_cache",
+    ".venv",
+    "venv",
+    "__pypackages__",
+    "_build",
+    ".sqlfluff",
+]
+
+line-length = 88
+
+target-version = "py311"

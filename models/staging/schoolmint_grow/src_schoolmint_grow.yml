@@ -1,0 +1,91 @@
+version: 2
+
+sources:
+    - name: staging
+      schema: |
+        {%- if  target.name == "dev" -%}
+        {{ target.dataset }}_staging
+        {%- else -%} prod_staging
+        {%- endif -%}
+      freshness:
+        warn_after: {count: 24, period: hour}
+        error_after: {count: 36, period: hour}
+      loaded_at_field: date_extracted
+      tables:
+        - name: base_schoolmint_grow_measurements
+          columns:
+            - name: data
+              data_type: json
+          external:
+            location: 'gs://instancename-prod-lake/schoolmint_grow_api/base_schoolmint_grow_measurements/*'
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              hive_partition_uri_prefix: 'gs://instancename-prod-lake/schoolmint_grow_api/base_schoolmint_grow_measurements'
+            partitions:
+              - name: date_extracted
+                data_type: timestamp
+
+        - name: base_schoolmint_grow_meetings
+          columns:
+            - name: data
+              data_type: json
+          external:
+            location: 'gs://instancename-prod-lake/schoolmint_grow_api/base_schoolmint_grow_meetings/*'
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              hive_partition_uri_prefix: 'gs://instancename-prod-lake/schoolmint_grow_api/base_schoolmint_grow_meetings'
+            partitions:
+              - name: date_extracted
+                data_type: timestamp
+
+        - name: base_schoolmint_grow_observations
+          columns:
+            - name: data
+              data_type: json
+          external:
+            location: 'gs://instancename-prod-lake/schoolmint_grow_api/base_schoolmint_grow_observations/*'
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              hive_partition_uri_prefix: 'gs://instancename-prod-lake/schoolmint_grow_api/base_schoolmint_grow_observations'
+            partitions:
+              - name: date_extracted
+                data_type: timestamp
+
+        - name: base_schoolmint_grow_rubrics
+          columns:
+            - name: data
+              data_type: json
+          external:
+            location: 'gs://instancename-prod-lake/schoolmint_grow_api/base_schoolmint_grow_rubrics/*'
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              hive_partition_uri_prefix: 'gs://instancename-prod-lake/schoolmint_grow_api/base_schoolmint_grow_rubrics'
+            partitions:
+              - name: date_extracted
+                data_type: timestamp
+
+        - name: base_schoolmint_grow_schools
+          columns:
+            - name: data
+              data_type: json
+          external:
+            location: 'gs://instancename-prod-lake/schoolmint_grow_api/base_schoolmint_grow_schools/*'
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              hive_partition_uri_prefix: 'gs://instancename-prod-lake/schoolmint_grow_api/base_schoolmint_grow_schools'
+            partitions:
+              - name: date_extracted
+                data_type: timestamp
+
+        - name: base_schoolmint_grow_users
+          columns:
+            - name: data
+              data_type: json
+          external:
+            location: 'gs://instancename-prod-lake/schoolmint_grow_api/base_schoolmint_grow_users/*'
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              hive_partition_uri_prefix: 'gs://instancename-prod-lake/schoolmint_grow_api/base_schoolmint_grow_users'
+            partitions:
+              - name: date_extracted
+                data_type: timestamp
