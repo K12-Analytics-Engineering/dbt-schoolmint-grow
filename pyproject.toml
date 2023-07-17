@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "kae-kippchicago-dbt"
+name = "kae-project-dbt"
 version = "0.1.0"
-description = "Kipp Chicago Schools"
+description = "KAE"
 authors = ["Marcos Alcozer <marcos@alcozer.dev>", "Zander Stachniak <zander@alcozer.dev>"]
 readme = "README.md"
 
